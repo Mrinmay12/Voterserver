@@ -242,9 +242,7 @@ export const UserVerify=async( req,res) => {
 
 export function verifyToken(req, res, next) {
   const token = req.headers.authorization;
-console.log('====================================');
-console.log(token);
-console.log('====================================');
+
   if (!token) {
     return res.status(401).json({ message: 'Token not provided' });
   }
