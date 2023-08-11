@@ -1,5 +1,6 @@
 import express from "express";
-import { Creatuser,Login,Resetpassword,Forgetpassword,UpdateUser,AdvenceSearch } from "../Controllers/UserController.js";
+import { Creatuser,Login,Resetpassword,Forgetpassword,UpdateUser,AdvenceSearch ,UserVerify
+    ,verifyToken} from "../Controllers/UserController.js";
 const router=express.Router()
  router.post("/newuser",Creatuser)
  router.post("/login",Login)
@@ -7,6 +8,7 @@ const router=express.Router()
  router.post("/forgetpassword",Forgetpassword)
  router.post("/updateuser",UpdateUser)
  router.get("/searchuser",AdvenceSearch)
+ router.get("/verify",verifyToken,UserVerify)
 
 
 

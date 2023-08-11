@@ -4,7 +4,8 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
 import crypto from "crypto"
 import { generateId } from "../Utiles.js";
-const secretKey = crypto.randomBytes(32).toString('hex');
+// const secretKey = crypto.randomBytes(32).toString('hex');
+const secretKey="VoterApp9787"
 export const Creatuser = async (req, res, next) => {
     const { email, password, age, name } = req.body;
     let username=name.split(' ')[0]
@@ -223,4 +224,37 @@ export const  AdvenceSearch=(req,res)=>{
     }
         
    
+}
+
+export const UserVerify=async( req,res) => {
+  try {
+    const userId = req.user.userId;
+   if(userId){
+
+       res.json({ user_id:userId });
+   }else{
+   res.json({message:"user not found"})
+   }
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred' });
+  }
+};
+
+export function verifyToken(req, res, next) {
+  const token = req.headers.authorization;
+console.log('====================================');
+console.log(token);
+console.log('====================================');
+  if (!token) {
+    return res.status(401).json({ message: 'Token not provided' });
+  }
+
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ message: 'Invalid token',logout:true });
+    }
+
+    req.user = decoded;
+    next();
+  });
 }

@@ -101,8 +101,8 @@ export const GetPost = async (req, res) => {
   
         //end code
       let perticularuser=users.filter((item)=>item.user_id===image.user_id)[0]
-      const image1Link = `https://voterserver.onrender.com/api/userpost/images/${image.image1.image_id}`;
-      const image2Link = `https://voterserver.onrender.com/api/userpost/images/${image.image2.image_id}`;
+      const image1Link = `localhost:9000/api/userpost/images/${image.image1.image_id}`;
+      const image2Link = `localhost:9000/api/userpost/images/${image.image2.image_id}`;
       return {
         image1: image1Link,
         image1_id:image.image1.image_id,
